@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>call&applay</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		//非严格模式下
+		function hello(ele1,ele2){
+			// console.log('hello ' + this + '\'s parameters ' + ele1 + ' & ' + ele2)
+			console.log(this)
+		}
+
+		//将数字作为执行上下文对象
+		hello.call(0,1,2)
+		//将字符串作为执行上下文对象
+		hello.call('aaa','a',1)
+		//将true作为执行上下文对象
+		hello.call(true)
+		//将false作为执行上下文对象
+		hello.call(false)
+		//将对象作为执行上下文对象
+		hello.call(new Object())
+		//将null传入
+		hello.call(null)
+		//将undefined传入
+		hello.call(undefined)
+		//不传参数
+		hello.call()
+	</script>
+</body>
+</html>

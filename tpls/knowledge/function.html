@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>原型链继承</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		function Fn () {
+
+		}
+
+		fn = new Fn()
+
+		console.log('Fn.prototype  ' + Fn.prototype)
+		console.log(Fn.prototype == Fn) //false
+		console.log('Fn.__proto__  ' + Fn.__proto__)
+		console.log('Fn.__proto__.constructor ' + Fn.__proto__.constructor)
+		console.log('fn'+ fn)
+		console.log(Fn.__proto__.constructor == fn)
+		console.log('Fn.__proto__.constructor.__proto__.constructor ' + Fn.__proto__.constructor.__proto__.constructor)
+		//Function也是个函数，所以它一定是被Function创建的，即它自身，因此，它的__proto__指向的是Function.prototype。
+		console.log('fn.prototype  ' + fn.__proto__)
+
+
+	</script>
+</body>
+</body>
+</html>

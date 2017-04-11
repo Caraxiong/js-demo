@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>bind&call和bind的区别</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		function print () {
+			console.log(this.name)
+		}
+
+		function obj1(){
+			this.name = 'call||apply'
+		}
+
+		function obj2(){
+			this.name = 'bind'
+		}
+
+		let o1 = new obj1();
+		let o2 = new obj2();
+
+		print.call(o1)
+		//一定要记住bind方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入的第一个参数作为this，即执行上下文对象。
+		print.bind(o2)()
+	</script>
+</body>
+</html>
