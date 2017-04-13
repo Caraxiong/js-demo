@@ -44,6 +44,41 @@
 		//Function也是个函数，所以它一定是被Function创建的，即它自身，因此，它的__proto__指向的是Function.prototype。
 
 
+		class Parent {
+		    constructor(name) { //构造函数
+		          this.name = name;
+		    }
+		    say() {
+		          console.log("Hello, " + this.name + "!");
+		    }
+		}
+
+		class Children extends Parent {
+		    constructor(name) { //构造函数
+		        super(name);    //调用父类构造函数
+		        // ...
+		    }
+		    say() {
+		          console.log("Hello, " + this.name + "! hoo~~");
+		    }
+		}
+		
+		console.log('Parent.prototype:  ' + Parent.prototype)
+		console.log('Parent:  ' + Parent)
+		console.log('Parent.__proto__:  ' + Parent.__proto__)
+		console.log('Parent.prototype == Parent:   '+Parent.prototype == Parent) //false
+		console.log('Parent.__proto__ == Parent:   ' + Parent.__proto__ == Parent) //false
+		console.log('Parent.__proto__.constructor: ' + Parent.__proto__.constructor)
+		console.log('Parent.prototype.constructor: ' + Parent.prototype.constructor)
+		
+
+		console.log('Children:  '+ Children)
+		console.log('Children.__proto__:  ' + Children.__proto__)
+		console.log('Children.prototype:  ' + Children.prototype)
+		console.log(Parent.prototype.constructor == Children.constructor)  //false
+		console.log(Parent.prototype.constructor === Parent)  //true
+		console.log(Parent.prototype.constructor == Children)  //false
+		console.log('Parent.__proto__.constructor.__proto__.constructor ' + Parent.__proto__.constructor.__proto__.constructor)
 	</script>
 </body>
 </body>
