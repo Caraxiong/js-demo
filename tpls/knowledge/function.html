@@ -6,21 +6,42 @@
 </head>
 <body>
 	<script type="text/javascript">
-		function Fn () {
+		function Fn (name) {
+			this.name = name
+		}
+		Fn.prototype.say = function() {
+			console.log('Hello, '+ this.name + '!');
+		}
+
+		function fn (name) {
+			Fn.apply(this,arguments)
+		}
+
+		function M () {
 
 		}
 
-		fn = new Fn()
+		M.prototype = Fn.prototype
+		fn.prototype = new M()
 
-		console.log('Fn.prototype  ' + Fn.prototype)
-		console.log(Fn.prototype == Fn) //false
-		console.log('Fn.__proto__  ' + Fn.__proto__)
-		console.log('Fn.__proto__.constructor ' + Fn.__proto__.constructor)
-		console.log('fn'+ fn)
-		console.log(Fn.__proto__.constructor == fn)
+
+		console.log('Fn.prototype:  ' + Fn.prototype)
+		console.log('Fn:  ' + Fn)
+		console.log('Fn.__proto__:  ' + Fn.__proto__)
+		console.log('Fn.prototype == Fn:   '+Fn.prototype == Fn) //false
+		console.log('Fn.__proto__ == Fn:   ' + Fn.__proto__ == Fn) //false
+		console.log('Fn.__proto__.constructor: ' + Fn.__proto__.constructor)
+		console.log('Fn.prototype.constructor: ' + Fn.prototype.constructor)
+		
+
+		console.log('fn:  '+ fn)
+		console.log('fn.__proto__:  ' + fn.__proto__)
+		console.log('fn.prototype:  ' + fn.prototype)
+		console.log(Fn.prototype.constructor == fn.constructor)  //false
+		console.log(Fn.prototype.constructor === Fn)  //true
+		console.log(Fn.prototype.constructor == fn)  //false
 		console.log('Fn.__proto__.constructor.__proto__.constructor ' + Fn.__proto__.constructor.__proto__.constructor)
 		//Function也是个函数，所以它一定是被Function创建的，即它自身，因此，它的__proto__指向的是Function.prototype。
-		console.log('fn.prototype  ' + fn.__proto__)
 
 
 	</script>
