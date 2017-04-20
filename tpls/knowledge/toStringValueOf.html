@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>toString && valueOf</title>
+</head>
+<body>
+<script type="text/javascript">
+	// let e1= {
+	// 	n : 1,
+	// 	valueOf : function(){
+	// 		return this.n + 4
+	// 	},
+	// 	toString : function(){
+	// 		return this.valueOf() + 5
+	// 	}
+	// }
+
+	// console.log('e1==0 : ', e1==0)
+	// console.log('+e1 : ', +e1)
+	// console.log('e1 : ', e1)
+	// console.log('e1.toString() : ', e1.toString())
+	// alert(e1)  //10
+
+
+	// alert([1,2,3])
+	// alert(true)
+
+	// let e2 = {
+	// 	n : 2,
+	// 	toString : function (){
+	// 		console.log('this is toString')
+	// 		return this.n
+	// 	},
+	// 	valueOf : function(){
+	// 		console.log('this is valueOf')
+	// 		return this.n*2
+	// 	}
+	// }
+	// alert(e2) //  2  this is toString
+	// alert(+e2)  // 4 this is valueOf
+	// alert(''+e2) // 4 this is valueOf
+	// alert(String(e2)) // 2 this is toString
+	// alert(Number(e2)) // 4 this is valueOf
+	// alert(e2 == '4') // true  this is valueOf
+	// alert(e2 === 4) //false  ===操作符不进行隐式转换
+
+
+	// let e3 = {
+	// 	n : 2,
+	// 	toString : function (){
+	// 		console.log('this is toString')
+	// 		return this.n
+	// 	}
+	// }
+	// alert(e3) //  2  this is toString
+	// alert(+e3)  // 2 this is toString
+	// alert(''+e3) // 2 this is toString
+	// alert(String(e3)) // 2 this is toString
+	// alert(Number(e3)) // 2 this is toString
+	// alert(e3 == '2') // true  this is toString
+	// alert(e3 === 2) //false  ===操作符不进行隐式转换
+
+
+	let e4 = {
+		n : 2,
+		valueOf : function(){
+			console.log('this is valueOf')
+			return this.n*2
+		}
+	}
+	alert(e4) //  [Object Object]
+	alert(+e4)  // 4 this is valueOf
+	alert(''+e4) // 4 this is valueOf
+	alert(String(e4)) // [Object Object]
+	alert(Number(e4)) // 4 this is valueOf
+	alert(e4 == '4') // true  this is valueOf
+	alert(e4 === 4) //false  ===操作符不进行隐式转换
+
+	// 对于那个[object Object]，我估计是从Object那里继承过来的，我们再去调它看看。
+	Object.prototype.toString = null; 
+	let e5 = {
+		n : 2,
+		valueOf : function(){
+			console.log('this is valueOf')
+			return this.n*2
+		}
+	}
+	alert(e5) //  4 this is valueOf
+	alert(+e5)  // 4 this is valueOf
+	alert(''+e5) // 4 this is valueOf
+	alert(String(e5)) // 4 this is valueOf
+	alert(Number(e5)) // 4 this is valueOf
+	alert(e5 == '4') // true  this is valueOf
+	alert(e5 === 4) //false  ===操作符不进行隐式转换
+
+	// let e3 = [1,2,3]
+	// Array.prototype.toString = function(){
+	// 	console.log('this is toString()')
+	// 	return this
+	// }
+
+	// Array.prototype.valueOf = function(){
+	// 	console.log('this is valueOf()')
+	// 	return this
+	// }
+	// alert(e3)
+</script>
+</body>
+</html>
+

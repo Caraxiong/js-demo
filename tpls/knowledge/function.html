@@ -21,28 +21,37 @@
 
 		}
 
-		M.prototype = Fn.prototype
-		fn.prototype = new M()
+		// M.prototype = Fn.prototype
+		// fn.prototype = new M()
+		fn.prototype = new Fn()
+
+		fn.prototype.say = function() {
+			console.log('Hello,Hi '+ this.name + '!');
+		}
 
 
-		console.log('Fn.prototype:  ' + Fn.prototype)
+		console.log('Fn.prototype:  ' , Fn.prototype)
 		console.log('Fn:  ' + Fn)
-		console.log('Fn.__proto__:  ' + Fn.__proto__)
-		console.log('Fn.prototype == Fn:   '+Fn.prototype == Fn) //false
-		console.log('Fn.__proto__ == Fn:   ' + Fn.__proto__ == Fn) //false
-		console.log('Fn.__proto__.constructor: ' + Fn.__proto__.constructor)
-		console.log('Fn.prototype.constructor: ' + Fn.prototype.constructor)
+		console.log('Fn.__proto__:  ' , Fn.__proto__)
+		console.log('Fn.prototype == Fn:   ',Fn.prototype == Fn) //false
+		console.log('Fn.__proto__ == Fn:   ' , Fn.__proto__ == Fn) //false
+		console.log('Fn.__proto__.constructor: ' , Fn.__proto__.constructor)
+		console.log('Fn.prototype.constructor: ' , Fn.prototype.constructor)
 		
 
-		console.log('fn:  '+ fn)
-		console.log('fn.__proto__:  ' + fn.__proto__)
-		console.log('fn.prototype:  ' + fn.prototype)
-		console.log(Fn.prototype.constructor == fn.constructor)  //false
+		console.log('fn:  ', fn)
+		console.log('fn.__proto__:  ' , fn.__proto__)
+		console.log('fn.prototype:  ' , fn.prototype)
+		
+		console.log('fn.prototype.constructor   ',fn.prototype.constructor)
+		console.log(Fn.prototype.constructor == fn.prototype.constructor)  //true
 		console.log(Fn.prototype.constructor === Fn)  //true
 		console.log(Fn.prototype.constructor == fn)  //false
-		console.log('Fn.__proto__.constructor.__proto__.constructor ' + Fn.__proto__.constructor.__proto__.constructor)
+		console.log(Fn.__proto__ == fn.__proto__)  //true
+		console.log(Fn.prototype == fn.prototype)  //false
+		console.log('Fn.__proto__.constructor.__proto__.constructor ' , Fn.__proto__.constructor.__proto__.constructor)
 		//Function也是个函数，所以它一定是被Function创建的，即它自身，因此，它的__proto__指向的是Function.prototype。
-
+		console.log('_______________________________')
 
 		class Parent {
 		    constructor(name) { //构造函数
@@ -63,21 +72,25 @@
 		    }
 		}
 		
-		console.log('Parent.prototype:  ' + Parent.prototype)
-		console.log('Parent:  ' + Parent)
-		console.log('Parent.__proto__:  ' + Parent.__proto__)
-		console.log('Parent.prototype == Parent:   '+Parent.prototype == Parent) //false
-		console.log('Parent.__proto__ == Parent:   ' + Parent.__proto__ == Parent) //false
-		console.log('Parent.__proto__.constructor: ' + Parent.__proto__.constructor)
-		console.log('Parent.prototype.constructor: ' + Parent.prototype.constructor)
+		console.log('Parent.prototype:  ' , Parent.prototype)
+		console.log('Parent:  ' , Parent)
+		console.log('Parent.__proto__:  ' , Parent.__proto__)
+		console.log('Parent.prototype == Parent:   ',Parent.prototype == Parent) //false
+		console.log('Parent.__proto__ == Parent:   ' , Parent.__proto__ == Parent) //false
+		console.log('Parent.__proto__.constructor: ' , Parent.__proto__.constructor)
+		console.log('Parent.prototype.constructor: ' , Parent.prototype.constructor)
 		
 
-		console.log('Children:  '+ Children)
-		console.log('Children.__proto__:  ' + Children.__proto__)
-		console.log('Children.prototype:  ' + Children.prototype)
-		console.log(Parent.prototype.constructor == Children.constructor)  //false
+		console.log('Children:  ', Children)
+		console.log('Children.__proto__:  ' , Children.__proto__)
+		console.log('Children.prototype:  ' , Children.prototype)
+		console.log('Children.prototype.constructor   ',Children.prototype.constructor)
+		console.log(Parent.prototype.constructor ==Children.prototype.constructor)  //false
 		console.log(Parent.prototype.constructor === Parent)  //true
 		console.log(Parent.prototype.constructor == Children)  //false
+
+		console.log(Fn.__proto__ == fn.__proto__)  //true
+		console.log(Fn.prototype == fn.prototype)  //false
 		console.log('Parent.__proto__.constructor.__proto__.constructor ' + Parent.__proto__.constructor.__proto__.constructor)
 	</script>
 </body>
