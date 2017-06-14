@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            div{
+                background-color: red;
+                width: 20px;
+                height: 20px;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <script>
+            window.onload = () => {
+                let getPos = (oEvent) => {
+                    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+                    let scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
+                    return {x:oEvent.clientX+scrollLeft,y:oEvent.clientY + scrollTop}
+                }
+                let $div = document.getElementsByTagName("div")
+                let length = $div.length
+                document.onmousemove = (ev) => {
+                    let oEvent = ev || event
+                    let pos = getPos(oEvent)
+                    for(let i = length-1;i > 0;i--){
+                        $div[i].style.left = $div[i-1].offsetLeft+'px'
+                        $div[i].style.top = $div[i-1].offsetTop+'px'
+                    }
+                    $div[0].style.left = pos.x + 'px'
+                    $div[0].style.top = pos.y + 'px'
+                }
+            }
+        </script>
+    </body>
+</html>

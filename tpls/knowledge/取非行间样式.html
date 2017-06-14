@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>currentStyle 兼容性不好   getComputedStyle</title>
+	<style type="text/css">
+		#div{
+			height: 200px;
+			width: 200px;
+			background-color: #0f0;
+		}
+	</style>
+</head>
+<body>
+<div id="div"></div>
+<script type="text/javascript">
+	window.onload = function() {
+		var oDiv = document.getElementById("div")
+		if(oDiv.currentStyle){
+			console.log(oDiv.currentStyle.width)
+		}else{
+			console.log(getComputedStyle(oDiv,null).width)
+		}
+	}
+</script>
+</body>
+</html>

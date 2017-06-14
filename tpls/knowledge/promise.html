@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	setTimeout(function(){
+		console.log(4)
+	},0)
+	new Promise(function(resolve,reject){
+		console.log(1)
+		for(let i = 1 ; i < 10000 ; i++){
+			if(i == 9999){
+				console.log(5)
+			}
+		}
+		resolve()
+	}).then(function(value){
+		console.log(2)
+	})
+	console.log(3)
+</script>
+</body>
+</html>
