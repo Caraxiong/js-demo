@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>变量赋值和函数赋值</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	1)函数声明会置顶
+	2)变量声明也会置顶
+	3)函数声明比变量声明更置顶：(函数在变量上面)
+	4)变量和赋值语句一起书写，在js引擎解析时，会将其拆成声明和赋值2部分，声明置顶，赋值保留在原来位置
+	5)声明过的变量不会重复声明
+	
+	知道以上的规则,上面的代码等同于 :  
+
+	var a=function (){
+	　　console.log(a);
+	}
+	var a=100;
+	a();
+	改成这样ok
+	var a=100;
+	var a=function (){
+	　　console.log(a);
+	}
+	a();
+	<script type="text/javascript">
+		var a = 100;
+		function a(){
+			console.log(a);
+		}
+		console.log(a)
+		a();
+	</script>
+</body>
+</html>
