@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+            console.assert(true,"恭喜你，没有出错！")  //不会有输出
+            console.assert(false,"出错啦")     //Assertion failed: 出错啦
+            console.assert(false,[1,2,3],"出错啦")     //Assertion failed: 出错啦
+            console.assert(false,['a','b'])     //Assertion failed: 出错啦
+
+            // console.clear()  //清除console
+            //计数
+            function count(){
+                console.count('cara')
+            }
+            console.group();
+            count()  //cara: 1
+            count()  //cara: 2
+            console.group();
+            count()  //cara: 3
+            count()  //cara: 4
+            console.groupEnd()
+            console.groupEnd()
+
+            console.dir(Object);
+            console.dirxml(Object);
+
+            console.error('error这是一个错误')
+            console.warn('warn这是一个错误')
+
+            console.info('info这是一条info')
+            console.log('log这是一条log')
+
+
+            console.profile('性能分析')
+            let arr1 = []
+            for(let i = 0;i < 10000;i++){
+                arr1[i] = i
+            }
+            console.profileEnd('性能分析')
+
+            console.table(["apples", "oranges", "bananas"]);
+
+            console.time('耗时测试1')
+            let arr2 = []
+            for(let i = 0;i < 10000 ; i++){
+                arr2[i] = i
+            }
+            console.timeEnd('耗时测试1')
+
+            console.time('耗时测试2')
+            let arr3 = []
+            for(let i = 0;i < 10000 ; i++){
+                arr3[i] = i
+            }
+            console.timeEnd('耗时测试2')
+
+            console.time('耗时测试3')
+            for(let i = 0;len = arr2.length,i < len ; i++){
+
+            }
+            console.timeEnd('耗时测试3')
+
+            console.time('耗时测试4')
+            for(let i = 0;i < arr2.length ; i++){
+            }
+            console.timeEnd('耗时测试4')
+
+            console.timeStamp('时间戳');
+
+            function tracer(a) {
+              console.trace();
+              return a;
+            }
+            function foo(a) {
+              return bar(a);
+            }
+            function bar(a) {
+              return tracer(a);
+            }
+            var a = foo('tracer'); //trace方法可以将函数的被调用过程清楚地输出到控制台上。
+
+            console.groupCollapsed(); //这句指令下面所有的console都会是以收缩的形式展现
+
+        </script>
+    </body>
+</html>
