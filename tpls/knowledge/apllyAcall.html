@@ -13,21 +13,21 @@
 		}
 
 		//将数字作为执行上下文对象
-		hello.call(0,1,2)
+		hello.call(0,1,2)   			//Number
 		//将字符串作为执行上下文对象
-		hello.call('aaa','a',1)
+		hello.call('aaa','a',1)  		//String
 		//将true作为执行上下文对象
-		hello.call(true)
+		hello.call(true) 				//Boolean
 		//将false作为执行上下文对象
-		hello.call(false)
+		hello.call(false)               //Boolean
 		//将对象作为执行上下文对象
-		hello.call(new Object())
-		//将null传入
-		hello.call(null)
+		hello.call(new Object())        //Object
+		//将null传入  
+		hello.call(null)				//window
 		//将undefined传入
-		hello.call(undefined)
+		hello.call(undefined)           //window
 		//不传参数
-		hello.call()
+		hello.call()					//window
 	</script>
 </body>
 </html>

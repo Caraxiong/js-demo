@@ -5,7 +5,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	/*// 定义一个动物类
+	// 定义一个动物类
 	function Animal (name) {
 	  	// 属性
 	  	this.name = name || 'Animal'
@@ -19,19 +19,19 @@
 	  	console.log('Animal:' + this.name + '正在吃：' + food)
 	}
 
-	function Cat(){
+	// function Cat(){
 
-	}
-	Cat.prototype = new Animal()
-	Cat.prototype.name = 'cat'
+	// }
+	// Cat.prototype = new Animal()
+	// Cat.prototype.name = 'cat'
 
-	//　Test Code
-	var cat = new Cat();
-	console.log(cat.name); //cat
-	console.log(cat.eat('fish')); //Animal:cat正在吃：fish
-	console.log(cat.sleep());  // Animal:cat正在睡觉！
-	console.log(cat instanceof Animal); //true
-	console.log(cat instanceof Cat); //true
+	// //　Test Code
+	// var cat = new Cat();
+	// console.log(cat.name); //cat
+	// console.log(cat.eat('fish')); //Animal:cat正在吃：fish
+	// console.log(cat.sleep());  // Animal:cat正在睡觉！
+	// console.log(cat instanceof Animal); //true
+	// console.log(cat instanceof Cat); //true
 
 	// 特点：
 
@@ -48,17 +48,19 @@
 
 	// 构造继承
 	// 核心：使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）
-	function Cat(name){
-	  Animal.call(this);
-	  this.name = name || 'Tom';
-	}
+	// function Cat(name){
+	//   Animal.call(this);
+	//   this.name = name || 'Tom';
+	// }
 
-	// Test Code
-	var cat = new Cat();
-	console.log(cat.name);
-	console.log(cat.sleep());
-	console.log(cat instanceof Animal); // false
-	console.log(cat instanceof Cat); // true
+	// // Test Code
+	// var cat = new Cat();
+	// console.log(cat.name);
+	// console.log(cat.sleep());
+	// console.log(cat instanceof Animal); // false
+
+	// // console.log(cat.eat()); cat.eat is not a function
+	// console.log(cat instanceof Cat); // true
 
 	// 特点：
 
@@ -73,18 +75,19 @@
 
 	// 实例继承
 	// 核心：为父类实例添加新特性，作为子类实例返回
-	function Cat(name){
-	  var instance = new Animal();
-	  instance.name = name || 'Tom';
-	  return instance;
-	}
+	// function Cat(name){
+	//   var instance = new Animal();
+	//   instance.name = name || 'Tom';
+	//   return instance;
+	// }
 
-	// Test Code
-	var cat = new Cat();
-	console.log(cat.name);
-	console.log(cat.sleep());
-	console.log(cat instanceof Animal); // true
-	console.log(cat instanceof Cat); // false
+	// // Test Code
+	// var cat = new Cat();
+	// console.log(cat.name); // Tom
+	// console.log(cat.sleep()); //Animal:Tom正在睡觉！
+	// console.log(cat.eat('a'))  //Animal:Tom正在吃：a
+	// console.log(cat instanceof Animal); // true
+	// console.log(cat instanceof Cat); // false
 
 	// 特点：
 
@@ -95,20 +98,21 @@
 	// 不支持多继承
 
 	// 拷贝继承
-	function Cat(name){
-	  	var animal = new Animal();
-	  	for(var p in animal){
-	    	Cat.prototype[p] = animal[p];
-	  	}
-	  	Cat.prototype.name = name || 'Tom';
-	}
+	// function Cat(name){
+	//   	var animal = new Animal();
+	//   	for(var p in animal){
+	//     	Cat.prototype[p] = animal[p];
+	//   	}
+	//   	Cat.prototype.name = name || 'Tom';
+	// }
 
-	// Test Code
-	var cat = new Cat();
-	console.log(cat.name);
-	console.log(cat.sleep());
-	console.log(cat instanceof Animal); // false
-	console.log(cat instanceof Cat); // true
+	// // Test Code
+	// var cat = new Cat();
+	// console.log(cat.name); //Tom
+	// console.log(cat.sleep()); //Animal:Tom正在睡觉！
+	// console.log(cat instanceof Animal); // false
+	// console.log(cat.eat('a'))  //Animal:Tom正在吃：a
+	// console.log(cat instanceof Cat); // true
 
 	// 特点：
 
@@ -120,18 +124,18 @@
 
 	// 组合继承
 	// 核心：通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用
-	function Cat(name){
-	  	Animal.call(this);
-	  	this.name = name || 'Tom';
-	}
-	Cat.prototype = new Animal();
+	// function Cat(name){
+	//   	Animal.call(this);
+	//   	this.name = name || 'Tom';
+	// }
+	// Cat.prototype = new Animal();
 
-	// Test Code
-	var cat = new Cat();
-	console.log(cat.name);
-	console.log(cat.sleep());
-	console.log(cat instanceof Animal); // true
-	console.log(cat instanceof Cat); // true
+	// // Test Code
+	// var cat = new Cat();
+	// console.log(cat.name);
+	// console.log(cat.sleep());
+	// console.log(cat instanceof Animal); // true
+	// console.log(cat instanceof Cat); // true
 	// 特点：
 
 	// 弥补了方式2的缺陷，可以继承实例属性/方法，也可以继承原型属性/方法
@@ -145,47 +149,47 @@
 
 	// 寄生组合继承
 	// 核心：通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点
-	function Cat(name){
-	  Animal.call(this);
-	  this.name = name || 'Tom';
-	}
-	(function(){
-	  // 创建一个没有实例方法的类
-	  var Super = function(){};
-	  Super.prototype = Animal.prototype;
-	  //将实例作为子类的原型
-	  Cat.prototype = new Super();
-	})();
+	// function Cat(name){
+	//   Animal.call(this);
+	//   this.name = name || 'Tom';
+	// }
+	// (function(){
+	//   // 创建一个没有实例方法的类
+	//   var Super = function(){};
+	//   Super.prototype = Animal.prototype;
+	//   //将实例作为子类的原型
+	//   Cat.prototype = new Super();
+	// })();
 
-	// Test Code
-	var cat = new Cat();
-	console.log(cat.name);
-	console.log(cat.sleep());
-	console.log(cat instanceof Animal); // true
-	console.log(cat instanceof Cat); //true
+	// // Test Code
+	// var cat = new Cat();
+	// console.log(cat.name);
+	// console.log(cat.sleep());
+	// console.log(cat instanceof Animal); // true
+	// console.log(cat instanceof Cat); //true
 
 	// 特点：
 	// 堪称完美
 
 	// 缺点：
-	// 实现较为复杂*/
+	// 实现较为复杂
 
-	function SuperType() {
-	  	this.property = true
-	}
-	SuperType.prototype.getSuperValue = function () {
-	  	return this.property
-	}
-	function SubType() {
-	  	this.subproperty = false
-	}
-	SubType.prototype = new SuperType()
-	SubType.prototype.getSubValue = function () {
-	  	return this.subproperty
-	}
-	var instance = new SubType()
-	console.log(instance.getSuperValue()) // true
-	console.log(instance.getSubValue()) // false
+	// function SuperType() {
+	//   	this.property = true
+	// }
+	// SuperType.prototype.getSuperValue = function () {
+	//   	return this.property
+	// }
+	// function SubType() {
+	//   	this.subproperty = false
+	// }
+	// SubType.prototype = new SuperType()
+	// SubType.prototype.getSubValue = function () {
+	//   	return this.subproperty
+	// }
+	// var instance = new SubType()
+	// console.log(instance.getSuperValue()) // true
+	// console.log(instance.getSubValue()) // false
 
 
 	</script>

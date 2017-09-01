@@ -22,7 +22,7 @@
 		}
 		setTimeout(function(){
 			console.log('执行完成')
-			resolve('随便什么数据')
+			resolve('随便什么数据')  //因为先执行的reject 所以resolve没有执行
 		}, 2000);
 	}).then(function(value){
 		console.log(2)
@@ -38,6 +38,7 @@
 	//     console.log(reason);
 	// });
 	console.log(3)
+	//结果为：1 8 5 3 9 6 7 4 执行完成
 </script>
 </body>
 </html>
