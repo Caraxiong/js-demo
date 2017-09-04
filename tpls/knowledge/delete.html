@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试delete 能删除哪些对象</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<script type="text/javascript">
+	//测试全局变量
+	var a = 0
+	delete a   //delete操作不能删除任何在全局作用域中的变量
+	console.log(a)
+
+
+	//测试全局函数
+	var fun = function() {
+		console.log('this is a function')
+	}
+	delete fun  //delete操作不能删除任何在全局作用域中的函数（无论这个函数是来自于函数声明或函数表达式）
+	fun()
+
+
+	//任何用let或const声明的属性不能够从它被声明的作用域中删除
+	function test(){
+		let a = 1
+		const b = 2
+		var c = 3
+		delete a
+		delete b
+		delete c  //??????
+		console.log(a)
+		console.log(b)
+		console.log(c)
+	}
+	test()
+
+	//如果 delete 操作符删除成功，则被删除的属性将从所属的对象上彻底消失。然后，如果该对象的原型链上有一个同名属性，则该对象会从原型链上继承该同名属性。（也就是说delete操作只会在自身的属性上起作用）
+	// let p = {
+	// 	apple : 1
+	// }
+	// p.prototype.banana = 3
+	// var newP = new p()
+
+
+	//不可设置的(Non-configurable)属性不能被移除。这意味着像Math, Array, Object内置对象的属性以及使用Object.defineProperty()方法设置为不可设置的属性不能被删除。
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>对象转换为字符串</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<script type="text/javascript">
+	let obj = {
+		a:1,
+		b:2,
+		c:3,
+		d:[0,1,2]
+	}
+
+	let a = Object.keys(obj).map((key) => {
+		return key+'='+obj[key]
+	}).join('&')
+
+	console.log(Object.keys(obj).map((key) => {
+		return key+'='+obj[key]
+	}))
+	console.log(a)
+</script>
+</body>
+</html>

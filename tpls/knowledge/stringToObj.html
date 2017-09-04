@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>字符串转为对象</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		let str = 'a=1&b=2&c=3'
+		let obj= {
+
+		}
+		str.split('&').map((key) => {
+			obj[key.split('=')[0]] = key.split('=')[1]
+		})
+		console.log(obj)
+	</script>
+</body>
+</html>

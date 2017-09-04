@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	let fun = (e) => {
+		// let e = 5   //hoisting.html:12 Uncaught SyntaxError: Identifier 'e' has already been declared
+		console.log(e) //undefined
+		var e = 5   
+		console.log(e) // 5
+		console.log(a)  //a is not defined
+	}
+	fun()
+</script>
+</body>
+</html>
