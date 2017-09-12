@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>for的几种循环方法对比</title>
+</head>
+<body>
+	<div></div>
+	<script type="text/javascript">
+		let arr = []
+		for(let i = 0 ; i < 1000 ; i++){
+			arr.push(i)
+		}
+		console.time('test for')
+		for(let i = 0 ; i < 1000 ; i++){
+		}
+		console.timeEnd('test for')
+
+		console.time('test forEach')
+		arr.forEach((value,index)=>{
+		})
+		console.timeEnd('test forEach')
+	</script>
+</body>
+</html>
