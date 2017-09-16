@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试configurable</title>
+</head>
+<body>
+<script type="text/javascript">
+	let obj = {
+	}
+	let newObj = Object.create(obj,{
+		a:{
+			value:'Cara',
+			writable:true
+		},
+		b:{
+			configurable:false,
+			get: function() {
+				return b
+			},
+			set: function(value) {
+				b = value
+			}
+		},
+		c:{
+			value:'C',
+			writable:false
+		},
+		d:{
+			configurable:true,
+			get: function() {
+				return d
+			},
+			set: function(value) {
+				d = value
+			}
+		},
+		e:{
+			value:'E',
+			writable:true,
+			configurable:false
+		},
+		f:{
+			value:'F',
+			configurable:true
+		}
+	})
+	//configurable,enumerable,writable默认值为false
+	console.log(newObj.a)  //Cara
+	newObj.a = 'a'    
+	console.log(newObj.a)  //a
+	delete newObj.a
+	console.log(newObj.a)  //a  configurable默认值为false   不可删
+
+	newObj.b = 'Caraxiong'   
+	console.log(newObj.b)   //Caraxiong    有set 可赋值
+	delete newObj.b 
+	console.log(newObj.b)   //Caraxiong    configurable为false 不可删
+
+	console.log(newObj.c)   //C
+	newObj.c = 'c'
+	console.log(newObj.c)   //C  writable为false，不可改
+	delete newObj.c
+	console.log(newObj.c)   //C  configurable默认值为false   不可删
+
+	newObj.d = 'd'
+	console.log(d)          //d  有set 可赋值
+	delete newObj.d
+	console.log(newObj.d)   //undefined  configurable为true 可删
+
+	console.log(newObj.e)  //E
+	newObj.e = 'e'	
+	console.log(newObj.e)  //e   writable为true，可改
+	delete newObj.e
+	console.log(newObj.e)  //e  configurable为false 不可删
+
+	newObj.f = 'f'	
+	console.log(newObj.f)  //F   无set get 不可赋值  writable默认值为false   不可赋值
+	delete newObj.f
+	console.log(newObj.f)  //undefined  configurable为true 可删
+</script>
+</body>
+</html>
