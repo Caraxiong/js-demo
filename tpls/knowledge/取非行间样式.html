@@ -15,9 +15,11 @@
 <script type="text/javascript">
 	window.onload = function() {
 		var oDiv = document.getElementById("div")
+		//IE
 		if(oDiv.currentStyle){
 			console.log(oDiv.currentStyle.width)
 		}else{
+			//非IE
 			console.log(getComputedStyle(oDiv,null).width)
 		}
 	}

@@ -23,7 +23,7 @@
 		setTimeout(function(){
 			console.log('执行完成')
 			resolve('随便什么数据')  //因为先执行的reject 所以resolve没有执行
-		}, 2000);
+		}, 0);
 	}).then(function(value){
 		console.log(2)
 	},function(value){
