@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>无缝滚动——上下</title>
+  <style type="text/css">
+  *{margin:0;padding:0;}
+  li{list-style:none;}
+  img{border:0;}
+  #scroll{width:178px;margin:50px auto;position:relative;}
+  .btn{display:block;width:27px;height:27px;margin-left:auto;margin-right:auto;cursor:pointer;}
+  .up{background:url(images/up.gif);}
+  .down{background:url(images/down.gif);}
+  .content{margin:10px 0;height:440px;overflow:hidden;position:relative;}
+  .content ul{position:absolute;top:0;left:0;}
+  .content li{height:110px;}
+  </style>
+</head>
+<body>
+  <div id="scroll">
+    <a href="javascript:;" id="up" class="btn up"></a>
+    <div class="content">
+      <ul>
+        <li><a href="#" title="111"><img src="images/1.jpg" alt="111" width="178" height="108"/></a></li>
+        <li><a href="#" title="222"><img src="images/2.jpg" alt="222" width="178" height="108"/></a></li>
+        <li><a href="#" title="333"><img src="images/3.jpg" alt="333" width="178" height="108"/></a></li>
+        <li><a href="#" title="444"><img src="images/4.jpg" alt="444" width="178" height="108"/></a></li>
+      </ul>
+    </div>
+    <a class="btn down" href="javascript:;" id="down"></a>
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+window.onload = function(){
+  var oDiv = document.getElementById('scroll');
+  var btnUp = document.getElementById('up');
+  var btnDown = document.getElementById('down');
+  var oUl = oDiv.getElementsByTagName('ul')[0];
+  var timer = null;
+  var speed = -1;
+  oUl.innerHTML += oUl.innerHTML;
+  setTimeout(move,1500);
+  btnUp.onclick = function(){
+    clearInterval(timer);
+    speed = -1;
+    move();
+  };
+  btnDown.onclick = function(){
+    clearInterval(timer);
+    speed = 1;
+    move();
+  };
+  oUl.onmouseover = function(){
+    clearInterval(timer);
+  };
+  oUl.onmouseout = function(){
+    move();
+  };
+  function move(){
+    timer = setInterval(function(){
+      oUl.style.top = oUl.offsetTop + speed + 'px';
+      if(oUl.offsetTop <= - oUl.offsetHeight / 2){
+        oUl.style.top = '0';
+      }else if(oUl.offsetTop >= 0){
+        oUl.style.top = - oUl.offsetHeight / 2 + 'px';
+      };
+    },30);
+  };
+};
+</script>

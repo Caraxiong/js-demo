@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<input type="file" name="file" id="file" onchange = "change()">
+<script type="text/javascript">
+	function change() {
+		console.log(document.getElementById("file").files[0])
+		let str = JSON.stringify({name:"front.jpg",size:75854,type:"image/jpeg"});
+		console.log(typeof str)
+	}
+</script>
+</body>
+</html>
