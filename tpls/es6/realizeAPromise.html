@@ -12,8 +12,10 @@
             function Promise(executor) {
                 var self = this
 
-                self.status = 'pending'
+                self.status = 'pending'  // Promise当前的状态
+                // Promise resolve时的回调函数集，因为在Promise结束之前有可能有多个回调添加到它上面
                 self.onResolvedCallback = []
+                // Promise reject时的回调函数集，因为在Promise结束之前有可能有多个回调添加到它上面
                 self.onRejectedCallback = []
 
                 function resolve(value) {
@@ -42,8 +44,10 @@
                       }
                     })
                 }
-
+                // 考虑到执行executor的过程中有可能出错，所以我们用try/catch块给包起来，
+                // 并且在出错后以catch到的值reject掉这个Promise
                 try {
+                    // 执行executor并传入相应的参数
                     executor(resolve, reject)
                 } catch (reason) {
                     reject(reason)
@@ -60,11 +64,14 @@
                 }
 
                 if (x instanceof Promise) {
+                    // 如果x的状态还没有确定，那么它是有可能被一个thenable决定最终状态和值的
+                    // 所以这里需要做一下处理，而不能一概的以为它会被一个“正常”的值resolve
                     if (x.status === 'pending') { //because x could resolved by a Promise Object
                       x.then(function(v) {
                         resolvePromise(promise2, v, resolve, reject)
                       }, reject)
                     } else { //but if it is resolved, it will never resolved by a Promise Object but a static value;
+                        // 但如果这个Promise的状态已经确定了，那么它肯定有一个“正常”的值，而不是一个thenable，所以这里直接取它的状态
                       x.then(resolve, reject)
                     }
                     return
@@ -99,6 +106,8 @@
             Promise.prototype.then = function(onResolved, onRejected) {
                 var self = this
                 var promise2
+                // 根据标准，如果then的参数不是function，则我们需要忽略它，此处以如下方式处理
+                // 把then的实参留空且让值可以穿透到后面
                 onResolved = typeof onResolved === 'function' ? onResolved : function(v) {
                     return v
                 }
@@ -107,6 +116,8 @@
                 }
 
                 if (self.status === 'resolved') {
+                    // 如果promise1(此处即为this/self)的状态已经确定并且是resolved，我们调用onResolved
+                    // 因为考虑到有可能throw，所以我们将其包在try/catch块里
                     return promise2 = new Promise(function(resolve, reject) {
                       setTimeout(function() { // 异步执行onResolved
                         try {
@@ -133,7 +144,8 @@
                 }
 
                 if (self.status === 'pending') {
-                    // 这里之所以没有异步执行，是因为这些函数必然会被resolve或reject调用，而resolve或reject函数里的内容已是异步执行，构造函数里的定义
+                    // 这里之所以没有异步执行，是因为这些函数必然会被resolve或reject调用，
+                    // resolve或reject函数里的内容已是异步执行，构造函数里的定义
                     return promise2 = new Promise(function(resolve, reject) {
                       self.onResolvedCallback.push(function(value) {
                         try {
@@ -168,6 +180,9 @@
                 })
                 return dfd
             }
+            new Promise(function(resolve,reject){
+
+            })
         </script>
     </body>
 </html>
