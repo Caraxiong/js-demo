@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>promise</title>
+    </head>
+    <body>
+        <script>
+        // console.time('耗时测试p1')
+        // const p1 = new Promise(function (resolve, reject) {
+        //     // setTimeout(() => {
+        //         console.timeEnd('耗时测试p1');
+        //         console.log('p1')
+        //         reject(new Error('fail'))
+        //     // }, 500)
+        // })
+        //
+        // const p2 = new Promise(function (resolve, reject) {
+        //     console.time('耗时测试p2')
+        //     setTimeout(() => {
+        //         console.timeEnd('耗时测试p2')
+        //         // resolve(p1)
+        //     }, 1000)
+        // })
+        //
+        // p2
+        // .then(result => console.log(result))
+        // .catch(error => console.log(error))
+        setTimeout(function(){
+            console.log('setTimeout')
+        },0)
+
+        let p = new Promise(function(resolve, reject) {
+            resolve()
+        })
+
+        p.then(data => {
+            console.log('then')
+        })
+
+        console.log('w')
+        </script>
+    </body>
+</html>

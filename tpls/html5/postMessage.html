@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>postMessage</title>
+    <meta>
+  </head>
+  <body>
+    <div>
+      <div id="color">parent</div>
+    </div>
+    <div>
+      <iframe src="" frameborder="0" id="child"></iframe>
+    </div>
+    <script>
+      window.onload = function(){
+        window.frames[0].postMessage('getcolor','')
+      }
+      window.addEventListener('message',function(e){
+          var color=e.data;
+          document.getElementById('color').style.backgroundColor=color;
+      },false);
+    </script>
+  </body>
+</html>
