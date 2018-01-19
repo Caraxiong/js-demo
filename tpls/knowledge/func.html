@@ -25,7 +25,7 @@
 	}
 	a();
 	<script type="text/javascript">
-		console.log(a);
+	/**	console.log(a);
 		// ƒ a(){
 		// 	console.log('1 '+a);
 		// }
@@ -34,7 +34,7 @@
 			console.log('1 '+a);
 		}
 		console.log('2 '+a)  //2 100
-		a();  //a is not a function
+		a();  //a is not a function  */
 
 
 		//两个同名全局函数，执行最后一个
@@ -44,7 +44,47 @@
 		// function b(){
 		// 	alert('second')
 		// }
-		// b(); //second
+    // b(); //second
+    
+
+    // var m = 10;
+    // function a(){
+    //   console.log(m)
+    //   let x = 5;
+    //   if(x<m){
+    //     console.log(1)
+    //   }
+    // }
+    // (function(){
+    //   var m = 4 ; let f = a
+    //   f()
+    // })() 
+    
+    // 测试作用域链
+    // var a = 10;
+    // function fn(){
+    //   var b = 20;
+    //   function bar(){
+    //     console.log(a+b);
+    //   }
+    //   return bar;
+    // }
+    //     b = 200;
+    // var x = fn();
+    // x();  //输出：30   （b的值没有变成200）
+
+    let x = 10;
+    function fn(){
+      console.log(x)
+    }
+    function show(f) {
+      let x = 20;
+
+      (function(){
+        f();   //10而不是20
+      })()
+    }
+    show(fn)
 	</script>
 </body>
 </html>
