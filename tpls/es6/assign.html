@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>object assign</title>
+</head>
+<body>
+    只对顶层属性做了赋值，完全没有继续做递归之类的把所有下一层的属性做深拷贝。
+    Object.assign() 只是一级属性复制，比浅拷贝多深拷贝了一层而已。用的时候，还是要注意这个问题的
+  <script>
+    const defaultOpt = {
+      title: {
+          text: 'hello world',
+          subtext: 'It\'s my world.'
+      }
+  };
+
+  const opt = Object.assign({}, defaultOpt, {
+      title: {
+          subtext: 'Yes, your world.'
+      }
+  });
+
+  console.log(opt);
+
+  // 预期结果
+  // {
+  //     title: {
+  //         text: 'hello world',
+  //         subtext: 'Yes, your world.'
+  //     }
+  // }
+  // 实际结果
+  // {
+  //     title: {
+  //         subtext: 'Yes, your world.'
+  //     }
+  // }  
+  </script>
+</body>
+</html>
