@@ -1,45 +1,147 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>css+div三列布局</title>
-	<meta charset="utf-8">
-	<style type="text/css">
-		*{
-			margin: 0;
-			padding: 0;
-		}
-		html,body{
-			height: 100%;
-		}
-		div{
-			height: 100%;
-		}
-		.left{
-			/*float: left;*/
-			width: 150px;
-			background-color: #f00;
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
-		.center{
-			background-color: #0f0;
-			margin: 0 150px;	
-		}
-		.right{
-			/*float: right;*/
-			/*overflow: auto;*/
-			width: 150px;
-			background-color: #00f;
-			position: absolute;
-			top: 0;
-			right: 0;
-		}
-	</style>
+  <title>css+div三列布局</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    fieldset {
+      height: 500px;
+      width: 400px;
+    }
+
+    div.box {
+      height: 100%;
+      position: relative;
+    }
+
+    div {
+      height: 100%;
+    }
+
+    .abs-box .left {
+      /*float: left;*/
+      width: 100px;
+      background-color: #f00;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .abs-box .center {
+      background-color: #0f0;
+      margin: 0 100px;
+    }
+
+    .abs-box .right {
+      width: 100px;
+      background-color: #00f;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .float-box .left {
+      width: 100px;
+      background-color: #f00;
+      float: left;
+    }
+
+    .float-box .center {
+      background-color: #0f0;
+      margin: 0 100px;
+      overflow: hidden;
+    }
+
+    .float-box .right {
+      width: 100px;
+      background-color: #00f;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .calc-box .left {
+      width: 100px;
+      background-color: #f00;
+      float: left;
+    }
+
+    .calc-box .center {
+      background-color: #0f0;
+      width: calc(100% - 200px);
+      float: left;
+    }
+
+    .calc-box .right {
+      width: 100px;
+      background-color: #00f;
+      float: left;
+    }
+
+    .flex-box{
+      display: flex;
+    }
+    .flex-box .left {
+      width: 100px;
+      background-color: #f00;
+    }
+
+    .flex-box .center {
+      background-color: #0f0;
+      width: auto;
+    }
+
+    .flex-box .right {
+      width: 100px;
+      background-color: #00f;
+    }
+  </style>
 </head>
+
 <body>
-	<div class="left">LEFT</div>
-	<div class="center">CENTER</div>
-	<div class="right">RIGHT</div>
+  <fieldset>
+    <legend>position:absolute</legend>
+    <div class="box abs-box">
+      <div class="left">LEFT</div>
+      <div class="center">CENTER</div>
+      <div class="right">RIGHT</div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>position:absolute + float:left</legend>
+    <div class="box float-box">
+      <div class="left">LEFT</div>
+      <div class="center">CENTER</div>
+      <div class="right">RIGHT</div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>calc</legend>
+    <div class="box calc-box">
+      <div class="left">LEFT</div>
+      <div class="center">CENTER</div>
+      <div class="right">RIGHT</div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>flex</legend>
+    <div class="box flex-box">
+      <div class="left">LEFT</div>
+      <div class="center">CENTER</div>
+      <div class="right">RIGHT</div>
+    </div>
+  </fieldset>
 </body>
+
 </html>

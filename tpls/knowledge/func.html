@@ -47,18 +47,18 @@
     // b(); //second
     
 
-    // var m = 10;
-    // function a(){
-    //   console.log(m)
-    //   let x = 5;
-    //   if(x<m){
-    //     console.log(1)
-    //   }
-    // }
-    // (function(){
-    //   var m = 4 ; let f = a
-    //   f()
-    // })() 
+    var m = 10;
+    function a(){
+      console.log(m)
+      let x = 5;
+      if(x<m){
+        console.log(1)
+      }
+    }
+    (function(){
+      var m = 4 ; let f = a
+      f()
+    })()   // 10  1
     
     // 测试作用域链
     // var a = 10;
@@ -73,18 +73,18 @@
     // var x = fn();
     // x();  //输出：30   （b的值没有变成200）
 
-    let x = 10;
-    function fn(){
-      console.log(x)
-    }
-    function show(f) {
-      let x = 20;
+    // let x = 10;
+    // function fn(){
+    //   console.log(x)
+    // }
+    // function show(f) {
+    //   let x = 20;
 
-      (function(){
-        f();   //10而不是20
-      })()
-    }
-    show(fn)
+    //   (function(){
+    //     f();   //10而不是20
+    //   })()
+    // }
+    // show(fn)
 	</script>
 </body>
 </html>
