@@ -4,14 +4,19 @@
 	<title>for的几种循环方法对比</title>
 </head>
 <body>
-	<div></div>
+	<div>
+    当数组长度 为 100000时，偶尔能刷出时间相等
+    当数组长度 小于 100000时，差距不明显，for 与 forEach 谁快谁慢不一定
+    当数组长度 大于 100000时，明显for 要快于forEach
+  </div>
 	<script type="text/javascript">
 		let arr = []
-		for(let i = 0 ; i < 1000 ; i++){
+    let len = 100000
+		for(let i = 0 ; i < len ; i++){
 			arr.push(i)
 		}
 		console.time('test for')
-		for(let i = 0 ; i < 1000 ; i++){
+		for(let i = 0 ; i < len ; i++){
 		}
 		console.timeEnd('test for')
 
