@@ -11,19 +11,33 @@
   </div>
 	<script type="text/javascript">
 		let arr = []
-    let len = 100000
+    let len = 1000000
 		for(let i = 0 ; i < len ; i++){
 			arr.push(i)
 		}
-		console.time('test for')
+		console.time('test for')  //只支持数组遍历
 		for(let i = 0 ; i < len ; i++){
 		}
 		console.timeEnd('test for')
 
 		console.time('test forEach')
 		arr.forEach((value,index)=>{
+      // console.log(typeof index) //number
 		})
 		console.timeEnd('test forEach')
+
+    console.time('test do/while')  //只支持数组遍历
+    let i = 0
+    do{
+      i++
+    }while(i<len)
+    console.timeEnd('test do/while')
+    
+    // console.time('test for in')  //但它输出的只是数组的索引和对象的key, 我们可以通过索引和key取到对应的值
+    for(let i in arr){
+
+    }
+    console.timeEnd('test for in')
 	</script>
 </body>
 </html>

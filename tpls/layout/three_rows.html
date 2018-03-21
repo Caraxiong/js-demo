@@ -18,6 +18,7 @@
     fieldset {
       height: 500px;
       width: 400px;
+      float: left;
     }
 
     div.box {
@@ -60,7 +61,6 @@
     .float-box .center {
       background-color: #0f0;
       margin: 0 100px;
-      overflow: hidden;
     }
 
     .float-box .right {
@@ -106,6 +106,27 @@
       width: 100px;
       background-color: #00f;
     }
+
+    .column-box{
+      column-count:3;
+      column-gap: 0;
+      column-rule-width: 0;
+    }
+    .column-box .left {
+      /* width: 100px; */
+      background-color: #f00;
+    }
+
+    .column-box .center {
+      background-color: #0f0;
+      /* width: auto; */
+    }
+
+    .column-box .right {
+      /* width: 100px; */
+      background-color: #00f;
+    }
+
   </style>
 </head>
 
@@ -137,6 +158,14 @@
   <fieldset>
     <legend>flex</legend>
     <div class="box flex-box">
+      <div class="left">LEFT</div>
+      <div class="center">CENTER</div>
+      <div class="right">RIGHT</div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>column:缺点 三列必须等宽</legend>
+    <div class="box column-box">
       <div class="left">LEFT</div>
       <div class="center">CENTER</div>
       <div class="right">RIGHT</div>

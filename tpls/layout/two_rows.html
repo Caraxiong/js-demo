@@ -1,0 +1,61 @@
+<html>
+<head>
+  <title>两列布局</title>
+  <meta charset="utf-8">
+  <style>
+    fieldset{
+      width: 400px;
+      height: 500px;
+      float: left;
+    }
+    div{
+      height: 100%;
+    }
+    .origin-box .right-box{
+      float: left;
+      width: 100%;
+    }
+    .origin-box .left{
+      float: left;
+      margin-left: -100%;
+      width: 200px;
+      border:1px solid rgb(252, 22, 22);
+    }
+    .origin-box .right{
+      margin-left:200px;
+      border:1px solid rgb(20, 58, 180);
+    }
+
+    .flex-box{
+      display: flex;
+    }
+    .flex-box .left{
+      flex-basis: 200px;
+      border:1px solid rgb(252, 22, 22);
+    }
+    .flex-box .right{
+      flex: 1;
+      border:1px solid rgb(20, 58, 180);
+    }
+  </style>
+</head>
+<body>
+  <fieldset>
+    <legend>原始办法</legend>
+    <div class="origin-box">
+      <div class="right-box">
+        <div class="right"></div>
+      </div>
+      <div class="left"></div>
+    </div>
+  </fieldset>
+  <fieldset>
+      <legend>flex</legend>
+      <div class="flex-box">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+    </fieldset>
+  <script></script>
+</body>
+</html>
