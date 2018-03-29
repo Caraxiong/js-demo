@@ -1,0 +1,99 @@
+<html>
+<head>
+  <title>冒泡和捕获</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1,user-scalable=no">
+  <style>
+    #div{
+      width: 200px;
+      height: 200px;
+      background-color: #2480d6;
+      display: flex;
+    }
+    #span{
+      display: block;
+      width: 50px;
+      height: 50px;
+      background-color: #e6d92e;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  target是真正发生事件的DOM元素，而currentTarget是当前事件发生在哪个DOM元素上
+  目标阶段也就是 target == currentTarget的时候。我没有打印它们两个因为太长了，所以打印了它们的nodeName，但是由于window没有nodeName这个属性，所以是undefined。
+
+  <div id="div">
+    <span id="span"></span>
+  </div>
+  结果：
+  window 捕获 SPAN undefined
+  bubbling.html:34 document 捕获 SPAN #document
+  bubbling.html:37 documentElement 捕获 SPAN HTML
+  bubbling.html:40 body 捕获 SPAN BODY
+  bubbling.html:43 $div 捕获 SPAN DIV
+  bubbling.html:46 $span 捕获 SPAN SPAN
+  bubbling.html:66 $span 冒泡 SPAN SPAN
+  bubbling.html:63 $div 冒泡 SPAN DIV
+  bubbling.html:60 body 冒泡 SPAN BODY
+  bubbling.html:57 documentElement 冒泡 SPAN HTML
+  bubbling.html:54 document 冒泡 SPAN #document
+  bubbling.html:51 window 冒泡 SPAN undefined
+  <script>
+    let $div = document.getElementById('div');
+    let $span = document.getElementById('span');
+    //捕获
+    window.addEventListener("click",function(e){
+      console.log("window 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    },true)
+    document.addEventListener("click",function(e){
+      console.log("document 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    },true)
+    document.documentElement.addEventListener("click",function(e){
+      console.log("documentElement 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    },true)
+    document.body.addEventListener("click",function(e){
+      console.log("body 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    },true)
+    $div.addEventListener("click",function(e){
+      console.log("$div 捕获", e.target.nodeName, e.currentTarget.nodeName,'冒泡比捕获先绑定');
+    },false) 
+    $div.onclick = function(){
+      console.log('$div onlick')
+    }
+    $div.addEventListener("click",function(e){
+      console.log("$div 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    },true)
+    $span.addEventListener("click",function(e){
+      console.log("$span 冒泡", e.target.nodeName, e.currentTarget.nodeName,'冒泡比捕获先绑定');
+    },false)
+    $span.addEventListener("click",function(e){
+      console.log("$span 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    },true)
+    
+
+    $span.onclick = function(){
+      console.log('$span onlick')
+    }
+    //冒泡
+    window.addEventListener("click",function(e){
+      console.log("window 冒泡", e.target.nodeName, e.currentTarget.nodeName);
+    },false)
+    document.addEventListener("click",function(e){
+      console.log("document 冒泡", e.target.nodeName, e.currentTarget.nodeName);
+    },false)
+    document.documentElement.addEventListener("click",function(e){
+      console.log("documentElement 冒泡", e.target.nodeName, e.currentTarget.nodeName);
+    },false)
+    document.body.addEventListener("click",function(e){
+      console.log("body 冒泡", e.target.nodeName, e.currentTarget.nodeName);
+    },false)
+    $div.addEventListener("click",function(e){
+      console.log("$div 冒泡", e.target.nodeName, e.currentTarget.nodeName);
+    },false) 
+    $span.addEventListener("click",function(e){
+      console.log("$span 冒泡", e.target.nodeName, e.currentTarget.nodeName,'冒泡比捕获后绑定');
+    },false)
+  </script>
+</body>
+</html>
